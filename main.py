@@ -1,15 +1,15 @@
 def ler_arquivo(nome_arquivo):
-    texto_limpo = Pre_processar_arquivo(nome_arquivo)
-    if texto_limpo is None:
+
+    try:
+        with open(nome_arquivo, "r", encoding="utf-8") as arquivo:
+            lista = arquivo.read().splitlines
+
+            if lista is None:
+                print('Arquivo vazio')
+                return None
+            else:
+                return lista
+
+    except (FileNotFoundError):
+        print('Arquivo não encontrado')
         return None
-
-    lista_nome = []
-    palavras = texto_limpo.split()
-
-    for nome in palavras:
-        nome = nome.strip()
-        if nome != "":
-
-            lista_nome.append(nome)
-
-    return lista_nome
